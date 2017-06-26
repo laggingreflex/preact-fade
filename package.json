@@ -1,6 +1,6 @@
 {
   "name": "preact-fade",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple fade in/out/transitions in Preact",
   "main": "index.js",
   "repository": "laggingreflex/preact-fade",
