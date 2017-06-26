@@ -1,0 +1,17 @@
+{
+  "name": "preact-fade",
+  "version": "0.0.0",
+  "description": "Simple fade in/out/transitions in Preact",
+  "main": "index.js",
+  "repository": "laggingreflex/preact-fade",
+  "files": [],
+  "dependencies": {
+    "fade": "^0.2.0"
+  },
+  "peerDependencies": {
+    "preact": "*"
+  },
+  "devDependencies": {
+    "preact": "^8.1.0"
+  }
+}
