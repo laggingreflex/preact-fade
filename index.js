@@ -3,7 +3,7 @@ const fade = require('fade');
 
 module.exports = class PreactFade extends Component {
 
-  /* We only update stuff manually. */
+  /* We will update elements manually. */
   shouldComponentUpdate() { return false }
 
   /* Just render an initial container */
@@ -46,7 +46,7 @@ module.exports = class PreactFade extends Component {
     /* Using setTimeout because for some reason it doesn't fade in otherwise */
     setTimeout(() => fade.in(newEl, fadeInDuration));
 
-    /* fade out anf remove all other (previous) elements */
+    /* fade out and remove all other (previous) elements */
     if (this.containerEl.childNodes.length > 1) {
       for (const node of this.containerEl.childNodes) {
         if (node !== newEl) {

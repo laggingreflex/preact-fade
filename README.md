@@ -1,6 +1,6 @@
 # preact-fade
 
-Simple fade in/out/transitions for [Preact] components. Woks for fading in/out (using [fade]) and also transitioning between components.
+[Preact] HOC for fading in/out (using [fade]) and also transitioning between components.
 
 [preact]: https://preactjs.com
 [fade]: https://github.com/juliangruber/fade
