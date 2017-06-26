@@ -28,7 +28,7 @@ module.exports = class PreactFade extends Component {
     /* Create the new Element */
     const newEl = render(
       h('div',
-        Object.assign(newProps, {
+        Object.assign({}, newProps, {
           /* position:absolute to overlap for fading in/out in place */
           /* opacity:0 to start hidden */
           style: 'position:absolute;opacity:0',
