@@ -50,7 +50,9 @@ module.exports = class PreactFade extends Component {
       for (const node of this.containerEl.childNodes) {
         if (node !== newEl) {
           /* position:absolute to overlap for fading in/out in place */
-          node.style.position = 'absolute';
+          if (newProps.positionAbsolute !== false && this.props.positionAbsolute !== false) {
+            node.style.position = 'absolute';
+          }
           fade.out(node, fadeOutDuration, () => node.remove());
         }
       }

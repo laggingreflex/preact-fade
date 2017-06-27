@@ -21,6 +21,7 @@ import PreactFade from 'preact-fade'
   fadeInDuration=1000
   fadeOutDuration=500
   changed={{some.prop}}
+  positionAbsolute={{true}}
 >
   <YourComponent>
 </PreactFade>
@@ -28,6 +29,7 @@ import PreactFade from 'preact-fade'
 
 Options:
 
-* **`duration`**: Fade in/out duration
-* **`fade[In|Out]Duration`**: fade in/out duration
-* **`changed`**: Only do DOM manipulations when this setting changes (in case a component keeps firing "onUpdate" etc. events multiple times causing weird fade in/out artifacts)
+* **`duration`**: Fade in/out duration.
+* **`fade[In|Out]Duration`**: fade in/out duration.
+* **`changed`**: Only do DOM manipulations when this setting changes (in case a component keeps firing "onUpdate" etc. events multiple times causing weird fade in/out artifacts).
+* **`positionAbsolute`**: Use `position:absolute` on old element to keep everything in place for smooth fade in/out transition.
