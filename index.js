@@ -1,5 +1,4 @@
 const { Component, render, h } = require('preact');
-const fade = require('fade');
 
 module.exports = class PreactFade extends Component {
 
@@ -28,33 +27,26 @@ module.exports = class PreactFade extends Component {
     /* Create the new Element */
     const newEl = render(
       h('div',
-        Object.assign({}, newProps, {
-          /* opacity:0 to start hidden */
-          style: 'opacity:0',
-        }),
+        Object.assign({}, newProps),
         newProps.children || []
       ),
       /* render (append) it inside the container */
       this.containerEl
     );
 
-    const fadeInDuration = this.props.fadeInDuration || this.props.duration || 1000;
-    const fadeOutDuration = this.props.fadeOutDuration || this.props.duration || 500;
+    const fadeInDuration = this.props.fadeInDuration || this.props.duration || '1000ms';
+    const fadeOutDuration = this.props.fadeOutDuration || this.props.duration || '500ms';
 
-    // fade.in(newEl, fadeInDuration)
-    /* Using setTimeout because for some reason it doesn't fade in otherwise */
-    setTimeout(() => fade.in(newEl, fadeInDuration));
-
-    /* fade out and remove all other (previous) elements */
-    if (this.containerEl.childNodes.length > 1) {
-      for (const node of this.containerEl.childNodes) {
-        if (node !== newEl) {
-          /* position:absolute to overlap for fading in/out in place */
-          if (newProps.positionAbsolute !== false && this.props.positionAbsolute !== false) {
-            node.style.position = 'absolute';
-          }
-          fade.out(node, fadeOutDuration, () => node.remove());
-        }
+    for (const node of this.containerEl.childNodes) {
+      if (node === newEl) {
+        node.style.opacity = 0;
+        node.style.transition = fadeInDuration;
+        setTimeout(() => node.style.opacity = 1);
+      } else {
+        node.style.transition = fadeOutDuration;
+        node.style.opacity = 0;
+        node.style.position = 'absolute';
+        node.addEventListener('transitionend', () => node.remove(), { once: true });
       }
     }
 

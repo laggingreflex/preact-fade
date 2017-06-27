@@ -5,9 +5,6 @@
   "main": "index.js",
   "repository": "laggingreflex/preact-fade",
   "files": [],
-  "dependencies": {
-    "fade": "^0.2.0"
-  },
   "peerDependencies": {
     "preact": "*"
   },
