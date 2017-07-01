@@ -2,6 +2,8 @@
 
 [Preact] HOC for fading in/out and also transitioning between components.
 
+[Demo](http://laggingreflex.github.io/preact-fade/demo/)
+
 [preact]: https://preactjs.com
 
 ## Install

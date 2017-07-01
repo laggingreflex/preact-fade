@@ -8,6 +8,7 @@ module.exports = class PreactFade extends Component {
   /* Just render an initial container */
   render() {
     return h('div', {
+      class: 'preact-fade-container',
       ref: ref => this.containerEl = ref,
       style: 'position:relative'
     }, []);
@@ -36,18 +37,33 @@ module.exports = class PreactFade extends Component {
 
     const fadeInDuration = this.props.fadeInDuration || this.props.duration || '1000ms';
     const fadeOutDuration = this.props.fadeOutDuration || this.props.duration || '500ms';
+    // const fadeInDuration = '300000ms'
+    // const fadeOutDuration = '300000ms'
 
+    const oldSize = { width: 0, height: 0 };
     for (const node of this.containerEl.childNodes) {
       if (node === newEl) {
         node.style.opacity = 0;
         node.style.transition = fadeInDuration;
-        setTimeout(() => node.style.opacity = 1);
+        setTimeout(() => {
+          node.style.opacity = 1;
+          delete this.containerEl.style.height;
+          delete this.containerEl.style.width;
+        });
       } else {
         node.style.transition = fadeOutDuration;
         node.style.opacity = 0;
         node.style.position = 'absolute';
+        oldSize.width = Math.max(oldSize.width, node.offsetWidth);
+        oldSize.height = Math.max(oldSize.height, node.offsetHeight);
         node.addEventListener('transitionend', () => node.remove(), { once: true });
       }
+    }
+    if (!newEl.offsetHeight && oldSize.height) {
+      this.containerEl.style.height = oldSize.height;
+    }
+    if (!newEl.offsetWidth && oldSize.width) {
+      this.containerEl.style.width = oldSize.width;
     }
 
     /* has rendered at least once */
